@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.ProductFragment"
+        android:label="product_fragment"
+        tools:layout="@layout/product_fragment" />
+    <fragment
+        android:id="@+id/productList"
+        android:name="fr.ensisa.rados.cafetariagestion.ProductList"
+        android:label="product_list_fragment"
+        tools:layout="@layout/product_list_fragment" />
+    <fragment
+        android:id="@+id/productViewFragment"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.ProductViewFragment"
+        android:label="product_view_fragment"
+        tools:layout="@layout/product_view_fragment" />
+    <fragment
+        android:id="@+id/productListViewModel"
+        android:name="fr.ensisa.rados.cafetariagestion.ProductListViewModel"
+        android:label="product_list_view_model_fragment"
+        tools:layout="@layout/product_list_view_model_fragment" />
+</navigation>
