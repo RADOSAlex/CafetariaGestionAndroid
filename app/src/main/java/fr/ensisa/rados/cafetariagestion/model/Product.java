@@ -12,7 +12,8 @@ public class Product {
     private long pid;
     private String name;
     private ProductType productType;
-    private double price;
+    private Double quantity;
+    private Double price;
     //Date d'expiration ?
 
     public Product() {
@@ -20,11 +21,12 @@ public class Product {
     }
 
     @Ignore
-    public Product(String name, ProductType productType, double price) {
+    public Product(String name, ProductType productType, Double quantity, Double price) {
         this();
         this.name = name;
         this.productType = productType;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public long getPid() {
@@ -51,6 +53,14 @@ public class Product {
         this.productType = productType;
     }
 
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
     public Double getPrice() {
         return price;
     }
@@ -58,6 +68,7 @@ public class Product {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 
 
 

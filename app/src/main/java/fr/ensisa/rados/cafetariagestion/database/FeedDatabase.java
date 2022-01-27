@@ -10,9 +10,9 @@ public class FeedDatabase {
 
     private void feedProducts() {
         ProductDao dao = AppDatabase.getInstance().productDao();
-        dao.insert(new Product("Pizza Salami", ProductType.FOOD, 3.6));
-        dao.insert(new Product("Pizza Chèvre", ProductType.FOOD, 3.6));
-        dao.insert(new Product("7up", ProductType.DRINKS, 0.8));
+        dao.insert(new Product("Pizza Salami", ProductType.FOOD, 5.0, 3.6));
+        dao.insert(new Product("Pizza Chèvre", ProductType.FOOD, 5.0, 3.6));
+        dao.insert(new Product("7up", ProductType.DRINKS, 10.0, 0.8));
     }
 
     public void feed() {

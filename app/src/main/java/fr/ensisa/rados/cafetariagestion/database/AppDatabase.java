@@ -12,9 +12,8 @@ import java.util.concurrent.Executors;
 
 import fr.ensisa.rados.cafetariagestion.model.Product;
 import fr.ensisa.rados.cafetariagestion.model.ProductType;
-
-@Database(entities = {Product.class}, version = 1)
 @TypeConverters({Converters.class})
+@Database(entities = {Product.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     static private AppDatabase instance = null;
@@ -33,7 +32,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
     public void populateProducts() {
-        productDao().insert(new Product("Pizza", ProductType.FOOD, 3.6));
+        productDao().insert(new Product("Pizza", ProductType.FOOD, 10.0, 3.6));
     }
 
     public void populate() {
