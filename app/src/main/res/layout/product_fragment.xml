@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/Name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -40,41 +40,45 @@
             android:text="@={product.price}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/Name" />
 
         <RadioGroup
-            android:layout_width="0dp"
+            android:id="@+id/ProductTypeRadioGroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price" >
+            app:layout_constraintTop_toBottomOf="@+id/price">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/productType" />
-
-            <RadioButton
-                android:id="@+id/pizza"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="@{product.productType == ProductType.FOOD}"
-                android:onClick="@{() -> product.setProductType(ProductType.FOOD)}"
-                android:text="@string/food" />
-
-            <RadioButton
-                android:id="@+id/viennese"
+                android:id="@+id/ProductTypeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="@{product.productType == ProductType.DRINKS}"
-                android:onClick="@{() -> product.setProductType(ProductType.DRINKS)}"
-                android:text="@string/drinks" />
+                android:text="@string/productType" />
 
+            <RadioButton
+                android:id="@+id/FoodButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/food"
+                android:checked="@{product.productType == ProductType.FOOD}"
+                android:onClick="@{() -> product.setProductType(ProductType.FOOD)}"/>
+
+            <RadioButton
+                android:id="@+id/DrinksButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/drinks"
+                android:checked="@{product.productType == ProductType.DRINKS}"
+                android:onClick="@{() -> product.setProductType(ProductType.DRINKS)}"/>
         </RadioGroup>
 
 
