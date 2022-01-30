@@ -84,9 +84,13 @@ public class ProductListFragment extends Fragment {
         });
         RecyclerView list = root.findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(root.getContext(), RecyclerView.VERTICAL, false));
-
         adapter = new ProductListAdapter();
         list.setAdapter(adapter);
+        DividerItemDecoration divider = new DividerItemDecoration(list.getContext(), DividerItemDecoration.VERTICAL);
+        list.addItemDecoration(divider);
+
+
+
 
         return root;
     }
@@ -136,6 +140,27 @@ public class ProductListFragment extends Fragment {
             public ProductHolder(ProductItemBinding binding) {
                 super(binding.getRoot());
                 this.binding = binding;
+                this.binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int position = getLayoutPosition();
+                        Product product= products.get(position);
+                        ProductListFragmentDirections.ActionProductListFragmentToProductFragment PListToP_action = ProductListFragmentDirections.actionProductListFragmentToProductFragment();
+
+                        PListToP_action.setId(product.getPid());
+                        NavHostFragment.findNavController(ProductListFragment.this).navigate(PListToP_action);
+                    }
+                });
+
+                this.binding.getRoot().setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        int position = getLayoutPosition();
+                        Product product = products.get(position);
+                        mViewModel.deleteProduct(product);
+                        return true;
+                    }
+                });
             }
         }
 

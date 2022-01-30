@@ -5,6 +5,8 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import fr.ensisa.rados.cafetariagestion.database.ProductDao;
 import fr.ensisa.rados.cafetariagestion.model.Product;
@@ -13,6 +15,7 @@ public class ProductListViewModel extends ViewModel {
 
     private ProductDao productDao;
     public MediatorLiveData<List<Product>> products;
+
 
     public LiveData<List<Product>> getProducts() {
         return products;
@@ -25,4 +28,14 @@ public class ProductListViewModel extends ViewModel {
     }
 
 
+    public void deleteProduct(Product product) {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                productDao.delete(product);
+            }
+        });
+
+    }
 }

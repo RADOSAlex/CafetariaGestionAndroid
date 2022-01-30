@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import java.util.Date;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -32,7 +33,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
     public void populateProducts() {
-        productDao().insert(new Product("Pizza", ProductType.FOOD, 10.0, 3.6));
+        productDao().insert(new Product("Pizza", ProductType.FOOD, 10.0, 3.6, new Date("22/03/1999")));
     }
 
     public void populate() {

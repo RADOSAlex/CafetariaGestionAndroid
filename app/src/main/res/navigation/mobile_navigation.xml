@@ -10,7 +10,12 @@
         android:id="@+id/productFragment"
         android:name="fr.ensisa.rados.cafetariagestion.ui.ProductFragment"
         android:label="product_fragment"
-        tools:layout="@layout/product_fragment" />
+        tools:layout="@layout/product_fragment" >
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
     <fragment
         android:id="@+id/productListFragment"
         android:name="fr.ensisa.rados.cafetariagestion.ui.ProductListFragment"

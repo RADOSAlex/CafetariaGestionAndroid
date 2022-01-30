@@ -6,9 +6,11 @@
     <string name="quantity">Quantity</string>
     <string name="food">Food</string>
     <string name="drinks">Drinks</string>
-    <string name="productType">Product Type : </string>
+    <string name="productType">Product Type </string>
     <string name="price">Price</string>
     <string name="name">Name</string>
     <string name="save">Save</string>
     <string name="populate">populate</string>
+    <string name="add">add</string>
+    <string name="expirationDate">expiration date</string>
 </resources>

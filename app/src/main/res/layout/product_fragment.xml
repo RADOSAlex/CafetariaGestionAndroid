@@ -7,6 +7,7 @@
     <data>
         <variable name="product" type="fr.ensisa.rados.cafetariagestion.model.Product" />
         <import type="fr.ensisa.rados.cafetariagestion.model.ProductType"/>
+        <import type="fr.ensisa.rados.cafetariagestion.ui.DataBindingAdapters"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,6 +43,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Name" />
 
+        <EditText
+            android:id="@+id/quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/price"
+            android:inputType="number"
+            android:text="@={product.quantity}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price" />
+
+        <EditText
+            android:id="@+id/expirationDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/expirationDate"
+            android:inputType="number"
+            android:text="@{DataBindingAdapters.format(product.expirationDate)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quantity" />
+
+
         <RadioGroup
             android:id="@+id/ProductTypeRadioGroup"
             android:layout_width="match_parent"
@@ -53,7 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price">
+            app:layout_constraintTop_toBottomOf="@+id/expirationDate">
 
             <TextView
                 android:id="@+id/ProductTypeTextView"

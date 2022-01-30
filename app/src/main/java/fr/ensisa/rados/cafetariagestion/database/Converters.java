@@ -2,6 +2,7 @@ package fr.ensisa.rados.cafetariagestion.database;
 
 import androidx.room.TypeConverter;
 
+import java.util.Date;
 import java.util.Locale;
 
 import fr.ensisa.rados.cafetariagestion.model.Product;
@@ -31,6 +32,16 @@ public class Converters {
         return nb == null? null: String .valueOf(nb);
     }
 
+    @TypeConverter
+    public static Date long2Date (long time) {
+        if (time == -1) return null;
+        return new Date (time);
+    }
 
+    @TypeConverter
+    public static long date2Long (Date date) {
+        if (date == null) return -1;
+        return date.getTime();
+    }
 
 }

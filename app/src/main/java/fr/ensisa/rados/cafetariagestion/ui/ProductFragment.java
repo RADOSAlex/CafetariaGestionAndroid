@@ -30,6 +30,7 @@ public class ProductFragment extends Fragment {
 
     private ProductViewModel mViewModel;
     private ProductFragmentBinding binding;
+    private long id;
 
 
     public static ProductFragment newInstance() {
@@ -40,6 +41,10 @@ public class ProductFragment extends Fragment {
     public void onCreate(@NonNull Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if (getArguments() !=null)
+        {
+            id = ProductFragmentArgs.fromBundle(getArguments()).getId();
+        } else { id=-1; }
     }
 
     @Override
@@ -63,12 +68,16 @@ public class ProductFragment extends Fragment {
                 }
             }
         });
-        mViewModel.setId(1);
+        if(id != -1){
+        mViewModel.setId(id);
+        } else {
+            binding.setProduct(new Product());
+        }
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.product_menu,menu);
+        inflater.inflate(R.menu.product_menu_save,menu);
     }
 
     @Override

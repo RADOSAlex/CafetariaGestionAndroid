@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity(tableName = "products")
 public class Product {
 
@@ -14,6 +16,7 @@ public class Product {
     private ProductType productType;
     private Double quantity;
     private Double price;
+    private Date expirationDate;
     //Date d'expiration ?
 
     public Product() {
@@ -21,12 +24,13 @@ public class Product {
     }
 
     @Ignore
-    public Product(String name, ProductType productType, Double quantity, Double price) {
+    public Product(String name, ProductType productType, Double quantity, Double price, Date expirationDate) {
         this();
         this.name = name;
         this.productType = productType;
         this.price = price;
         this.quantity = quantity;
+        this.expirationDate=expirationDate;
     }
 
     public long getPid() {
@@ -47,6 +51,14 @@ public class Product {
 
     public ProductType getProductType() {
         return productType;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public void setProductType(ProductType productType) {
@@ -74,6 +86,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "@" + pid + " " + productType + ":" + name + '.' + price + '€';
+        return "@" + pid + " " + productType + ":" + name + '.' + price + '€' + expirationDate ;
     }
 }

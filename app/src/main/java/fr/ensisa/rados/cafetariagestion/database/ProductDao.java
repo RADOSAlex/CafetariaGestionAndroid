@@ -25,4 +25,6 @@ public interface ProductDao {
 
     @Delete
     void delete(Product p);
+
+    //Peut faire un getByName pour trier .
 }
