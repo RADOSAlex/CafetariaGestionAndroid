@@ -6,7 +6,7 @@
 
     <data>
         <variable name="changeDate" type="android.view.View.OnClickListener" />
-        <variable name="product" type="fr.ensisa.rados.cafetariagestion.model.Product" />
+        <variable name="vm" type="fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.ProductViewModel" />
         <import type="fr.ensisa.rados.cafetariagestion.model.ProductType"/>
         <import type="fr.ensisa.rados.cafetariagestion.ui.DataBindingAdapters"/>
     </data>
@@ -24,7 +24,7 @@
             android:ems="10"
             android:hint="@string/name"
             android:inputType="text"
-            android:text="@={product.name}"
+            android:text="@={vm.product.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
             android:ems="10"
             android:hint="@string/price"
             android:inputType="number"
-            android:text="@={product.price}"
+            android:text="@={vm.product.price}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Name" />
@@ -54,7 +54,7 @@
             android:ems="10"
             android:hint="@string/price"
             android:inputType="number"
-            android:text="@={product.quantity}"
+            android:text="@={vm.product.quantity}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/price" />
@@ -68,7 +68,7 @@
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="@string/expirationDate"
-            android:text="@{DataBindingAdapters.format(product.expirationDate)}"
+            android:text="@{DataBindingAdapters.format(vm.product.expirationDate)}"
             android:onClick="@{(view) -> changeDate.onClick(view)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,8 +101,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/food"
-                android:checked="@{product.productType == ProductType.FOOD}"
-                android:onClick="@{() -> product.setProductType(ProductType.FOOD)}"/>
+                android:checked="@{vm.product.productType == ProductType.FOOD}"
+                android:onClick="@{() -> vm.product.setProductType(ProductType.FOOD)}"/>
 
             <RadioButton
                 android:id="@+id/DrinksButton"
@@ -110,8 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/drinks"
-                android:checked="@{product.productType == ProductType.DRINKS}"
-                android:onClick="@{() -> product.setProductType(ProductType.DRINKS)}"/>
+                android:checked="@{vm.product.productType == ProductType.DRINKS}"
+                android:onClick="@{() -> vm.product.setProductType(ProductType.DRINKS)}"/>
         </RadioGroup>
 
 

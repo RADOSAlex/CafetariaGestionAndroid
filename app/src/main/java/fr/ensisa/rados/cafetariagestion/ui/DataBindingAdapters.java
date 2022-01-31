@@ -2,6 +2,7 @@ package fr.ensisa.rados.cafetariagestion.ui;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
@@ -11,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import fr.ensisa.rados.cafetariagestion.R;
+import fr.ensisa.rados.cafetariagestion.model.Product;
 import fr.ensisa.rados.cafetariagestion.model.ProductType;
 
 
@@ -69,6 +71,23 @@ public class DataBindingAdapters {
         }
         view.setText(text);
     }
+
+    @BindingAdapter("android:image")
+    public static void SetImage (ImageView view, Product product) {
+        if (product == null) return;
+        if (product.getProductType() != null) {
+            switch (product.getProductType()) {
+
+                case FOOD:
+                    view.setImageResource(R.drawable.food_icon);
+                    break;
+                case DRINKS:
+                    view.setImageResource(R.drawable.drink);
+                    break;
+            }
+        }
+    }
+
 
     static private SimpleDateFormat formatter = null;
 

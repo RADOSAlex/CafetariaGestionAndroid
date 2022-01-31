@@ -13,4 +13,8 @@
     <string name="populate">populate</string>
     <string name="add">add</string>
     <string name="expirationDate">expiration date</string>
+    <string name="Cafet">Cafet</string>
+    <string name="productList">Products</string>
+    <string name="telephone">telephone</string>
+    <string name="back">back</string>
 </resources>

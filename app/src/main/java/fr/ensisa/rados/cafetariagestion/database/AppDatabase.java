@@ -38,7 +38,7 @@ public abstract class AppDatabase extends RoomDatabase {
         cafetDao().insert(new Cafet("Werner", "034545846"));
     }
     public void populateProducts() {
-        productDao().insert(new Product("Pizza", ProductType.FOOD, 10.0, 3.6, new Date("22/03/1999"), image));
+        productDao().insert(new Product("Pizza", ProductType.FOOD, 10.0, 3.6, new Date("22/03/1999")));
     }
 
     public void populate() {

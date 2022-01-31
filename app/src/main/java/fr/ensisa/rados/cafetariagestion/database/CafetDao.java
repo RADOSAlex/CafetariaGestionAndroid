@@ -21,7 +21,7 @@ public interface CafetDao {
     LiveData<Cafet> getById(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Cafet c);
+    long  insert(Cafet c);
 
     @Delete
     void delete(Cafet c);

@@ -27,14 +27,14 @@ public class Product {
     }
 
     @Ignore
-    public Product(String name, ProductType productType, Double quantity, Double price, Date expirationDate, Bitmap image) {
+    public Product(String name, ProductType productType, Double quantity, Double price, Date expirationDate) {
         this();
         this.name = name;
         this.productType = productType;
         this.price = price;
         this.quantity = quantity;
         this.expirationDate=expirationDate;
-        this.image=image;
+
     }
 
     public long getPid() {

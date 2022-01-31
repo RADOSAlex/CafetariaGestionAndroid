@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -60,7 +61,7 @@ public class ProductFragment extends Fragment implements DatePickerFragment.OnCh
         binding.setChangeDate(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerFragment fragment = DatePickerFragment.newInstance(binding.getProduct().getExpirationDate());
+                DatePickerFragment fragment = DatePickerFragment.newInstance(mViewModel.getProduct().getValue().getExpirationDate());
                 fragment.setTargetFragment(ProductFragment.this, EXPIRATIONDATE);
                 FragmentManager manager = getParentFragmentManager();
                 fragment.show(manager, "Expiration Date");
@@ -74,47 +75,53 @@ public class ProductFragment extends Fragment implements DatePickerFragment.OnCh
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         mViewModel.setProductDao(AppDatabase.getInstance().productDao());
-        mViewModel.getProduct().observe(getViewLifecycleOwner(), new Observer<Product>() {
-            @Override
-            public void onChanged(Product product) {
-                if(product != null){
-                    binding.setProduct(product);
-                }
-            }
-        });
-        if(id != -1){
-        mViewModel.setId(id);
-        } else {
-            binding.setProduct(new Product());
+//        mViewModel.getProduct().observe(getViewLifecycleOwner(), new Observer<Product>() {
+//            @Override
+//            public void onChanged(Product product) {
+//                if(product != null){
+//                    mViewModel.saveProduct(product);
+//                }
+//            }
+//        });
+        long id = ProductFragmentArgs.fromBundle(getArguments()).getId();
+        if (id == 0) {
+            mViewModel.createProduct();
         }
+        else{
+            mViewModel.setId(id);
+        }
+        binding.setVm(mViewModel);
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.product_menu_save,menu);
+        inflater.inflate(R.menu.return_menu, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.save: return save();
+            case R.id.back: return back();
         }
         return onContextItemSelected(item);
     }
 
+    private boolean back() {
+        Navigation.findNavController(getView()).popBackStack();
+        return true;
+    }
+
     private boolean save() {
-        Product toSave = binding.getProduct();
-        if (toSave != null){
-            Log.d(TAG,toSave.toString());
-            mViewModel.saveProduct(toSave);
-        }
-        NavHostFragment.findNavController(this).popBackStack();
+        mViewModel.saveProduct(mViewModel.getProduct().getValue());
+        Navigation.findNavController(getView()).popBackStack();
         return true;
     }
 
     @Override
     public void onDateChanged(Date date) {
-        binding.getProduct().setExpirationDate(date);
+        mViewModel.getProduct().getValue().setExpirationDate(date);
         binding.invalidateAll();
     }
 }

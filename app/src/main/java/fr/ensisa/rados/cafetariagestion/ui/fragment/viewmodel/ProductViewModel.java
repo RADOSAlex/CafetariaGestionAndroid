@@ -30,6 +30,19 @@ public class ProductViewModel extends ViewModel {
         return product;
     }
 
+
+    public void createProduct() {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Product product = new Product ();
+                long id = productDao.insert(product);
+                setId(id);
+            }
+        });
+
+    }
     public void saveProduct (Product p){
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(new Runnable() {

@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ import fr.ensisa.rados.cafetariagestion.databinding.ProductItemBinding;
 import fr.ensisa.rados.cafetariagestion.model.Product;
 
 
+import fr.ensisa.rados.cafetariagestion.ui.ItemSwipeCallback;
 import fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.ProductListViewModel;
 
 public class ProductListFragment extends Fragment {
@@ -60,6 +62,26 @@ public class ProductListFragment extends Fragment {
         list.setAdapter(adapter);
         DividerItemDecoration divider = new DividerItemDecoration(list.getContext(), DividerItemDecoration.VERTICAL);
         list.addItemDecoration(divider);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(
+                new ItemSwipeCallback(getContext(), ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, new ItemSwipeCallback.SwipeListener() {
+                    @Override
+                    public void onSwiped(int direction, int position) {
+                        Product product = adapter.products.get(position);
+
+                        switch (direction) {
+                            case ItemTouchHelper.LEFT:
+                                mViewModel.deleteProduct (product);
+                                break;
+                            case ItemTouchHelper.RIGHT:
+                                ProductListFragmentDirections.ActionProductListFragmentToProductFragment action = ProductListFragmentDirections.actionProductListFragmentToProductFragment();
+                                action.setId(product.getPid());
+                                NavHostFragment.findNavController(ProductListFragment.this).navigate(action);
+                                break;
+                        }
+                    }
+                })
+        );
+        touchHelper.attachToRecyclerView(list);
 
 
 
@@ -88,7 +110,7 @@ public class ProductListFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.populate:
+            case R.id.back:
                 return doPopulate();
         }
         return onContextItemSelected(item);
