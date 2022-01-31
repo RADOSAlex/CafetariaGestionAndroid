@@ -1,4 +1,4 @@
-package fr.ensisa.rados.cafetariagestion.ui;
+package fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;

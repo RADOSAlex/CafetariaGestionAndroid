@@ -1,6 +1,7 @@
-package fr.ensisa.rados.cafetariagestion.ui;
+package fr.ensisa.rados.cafetariagestion.ui.fragment;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,14 +20,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Date;
+
 import fr.ensisa.rados.cafetariagestion.R;
 import fr.ensisa.rados.cafetariagestion.database.AppDatabase;
 import fr.ensisa.rados.cafetariagestion.databinding.ProductFragmentBinding;
 import fr.ensisa.rados.cafetariagestion.model.Product;
+import fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.ProductViewModel;
 
-public class ProductFragment extends Fragment {
+public class ProductFragment extends Fragment implements DatePickerFragment.OnChangedDate{
 
     static private final String TAG = "ProductFragment";
+    private static final int EXPIRATIONDATE = 1;
 
     private ProductViewModel mViewModel;
     private ProductFragmentBinding binding;
@@ -52,6 +57,15 @@ public class ProductFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.product_fragment, container, false);
         binding.setLifecycleOwner(this);
+        binding.setChangeDate(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerFragment fragment = DatePickerFragment.newInstance(binding.getProduct().getExpirationDate());
+                fragment.setTargetFragment(ProductFragment.this, EXPIRATIONDATE);
+                FragmentManager manager = getParentFragmentManager();
+                fragment.show(manager, "Expiration Date");
+            }
+        });
         return binding.getRoot();
     }
 
@@ -98,4 +112,9 @@ public class ProductFragment extends Fragment {
         return true;
     }
 
+    @Override
+    public void onDateChanged(Date date) {
+        binding.getProduct().setExpirationDate(date);
+        binding.invalidateAll();
+    }
 }

@@ -35,7 +35,7 @@
             android:hint="@string/price"
             android:text="@{product.price}"
             android:textAlignment="textEnd"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/ProductItemName"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="€"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/ProductItemPrice"
             app:layout_constraintTop_toTopOf="parent" />
@@ -58,6 +58,7 @@
             android:layout_marginTop="8dp"
             android:hint="@string/quantity"
             android:text="@{product.quantity}"
+            android:textSize="18sp"
             android:textAlignment="center"
             app:layout_constraintStart_toEndOf="@+id/ProductItemPrice"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +75,7 @@
             app:layout_constraintStart_toEndOf="@+id/ProductItemQuantity"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/ProductItemDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

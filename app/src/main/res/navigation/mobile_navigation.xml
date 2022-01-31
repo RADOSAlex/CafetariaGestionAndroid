@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/productFragment"
-        android:name="fr.ensisa.rados.cafetariagestion.ui.ProductFragment"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.ProductFragment"
         android:label="product_fragment"
         tools:layout="@layout/product_fragment" >
         <argument
@@ -18,12 +18,17 @@
     </fragment>
     <fragment
         android:id="@+id/productListFragment"
-        android:name="fr.ensisa.rados.cafetariagestion.ui.ProductListFragment"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.ProductListFragment"
         android:label="product_list_fragment"
         tools:layout="@layout/product_list_fragment" >
         <action
             android:id="@+id/action_productListFragment_to_productFragment"
             app:destination="@id/productFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cafetFragment"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.CafetFragment"
+        android:label="cafet_fragment"
+        tools:layout="@layout/cafet_fragment" />
 
 </navigation>

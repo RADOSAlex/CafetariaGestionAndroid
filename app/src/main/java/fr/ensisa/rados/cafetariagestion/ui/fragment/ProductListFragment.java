@@ -1,4 +1,4 @@
-package fr.ensisa.rados.cafetariagestion.ui;
+package fr.ensisa.rados.cafetariagestion.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,43 +10,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
-
-import fr.ensisa.rados.cafetariagestion.R;
-import fr.ensisa.rados.cafetariagestion.database.AppDatabase;
-import fr.ensisa.rados.cafetariagestion.database.FeedDatabase;
-import fr.ensisa.rados.cafetariagestion.databinding.ProductItemBinding;
-import fr.ensisa.rados.cafetariagestion.databinding.ProductListFragmentBinding;
-import fr.ensisa.rados.cafetariagestion.model.Product;
-
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,6 +26,9 @@ import fr.ensisa.rados.cafetariagestion.database.AppDatabase;
 import fr.ensisa.rados.cafetariagestion.database.FeedDatabase;
 import fr.ensisa.rados.cafetariagestion.databinding.ProductItemBinding;
 import fr.ensisa.rados.cafetariagestion.model.Product;
+
+
+import fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.ProductListViewModel;
 
 public class ProductListFragment extends Fragment {
 
