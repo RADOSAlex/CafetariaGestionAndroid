@@ -6,7 +6,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Entity(tableName = "products")
 public class Product {
@@ -24,6 +26,7 @@ public class Product {
 
     public Product() {
         this.pid = 0;
+        this.expirationDate= Calendar.getInstance().getTime();
     }
 
     @Ignore

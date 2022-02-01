@@ -19,7 +19,7 @@ public class FeedDatabase {
 
     private void feedCafets() {
         CafetDao dao = AppDatabase.getInstance().cafetDao();
-        dao.insert(new Cafet("Werner", "15184"));
+        dao.insert(new Cafet("Werner", "15184", 0));
 
     }
 

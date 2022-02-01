@@ -60,5 +60,15 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
+    <fragment
+        android:id="@+id/providerListFragment"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.ProviderListFragment"
+        android:label="provider_list_fragment"
+        tools:layout="@layout/provider_list_fragment" />
+    <fragment
+        android:id="@+id/providerFragment"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.ProviderFragment"
+        android:label="provider_fragment"
+        tools:layout="@layout/provider_fragment" />
 
 </navigation>

@@ -30,7 +30,7 @@
             android:id="@+id/ProductItemPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="36dp"
             android:layout_marginTop="8dp"
             android:hint="@string/price"
             android:text="@{product.price}"
@@ -43,10 +43,11 @@
             android:id="@+id/euro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:text="€"
             android:textSize="18sp"
             android:textStyle="italic"
+            app:layout_constraintEnd_toStartOf="@+id/ProductItemQuantity"
             app:layout_constraintStart_toEndOf="@+id/ProductItemPrice"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,23 +59,12 @@
             android:layout_marginTop="8dp"
             android:hint="@string/quantity"
             android:text="@{product.quantity}"
-            android:textSize="18sp"
             android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/ProductItemPrice"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/ProductItemProductType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/productType"
-            android:text="@{product.productType}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.187"
-            app:layout_constraintStart_toEndOf="@+id/ProductItemQuantity"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/ProductItemDate"
@@ -86,6 +76,7 @@
             android:inputType="date"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:hint="@string/expirationDate"
             android:text="@{DataBindingAdapters.format(product.expirationDate)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ProductItemName" />

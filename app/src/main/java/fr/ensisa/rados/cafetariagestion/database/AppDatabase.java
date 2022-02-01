@@ -14,8 +14,10 @@ import java.util.concurrent.Executors;
 import fr.ensisa.rados.cafetariagestion.model.Cafet;
 import fr.ensisa.rados.cafetariagestion.model.Product;
 import fr.ensisa.rados.cafetariagestion.model.ProductType;
+import fr.ensisa.rados.cafetariagestion.model.Provider;
+
 @TypeConverters({Converters.class})
-@Database(entities = {Product.class, Cafet.class}, version = 1, exportSchema = false)
+@Database(entities = {Product.class, Cafet.class, Provider.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     static private AppDatabase instance = null;
@@ -32,15 +34,19 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract ProductDao productDao();
     public abstract CafetDao cafetDao();
+    public abstract ProviderDao providerDao();
 
 
     public void populateCafets(){
-        cafetDao().insert(new Cafet("Werner", "034545846"));
+        cafetDao().insert(new Cafet("Werner", "034545846", 0));
     }
     public void populateProducts() {
         productDao().insert(new Product("Pizza", ProductType.FOOD, 10.0, 3.6, new Date("22/03/1999")));
     }
 
+    private void populateProviders() {
+        providerDao().insert(new Provider("Boulangerie Germain", "06080484", 3));
+    }
     public void populate() {
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(new Runnable() {
@@ -48,7 +54,10 @@ public abstract class AppDatabase extends RoomDatabase {
             public void run() {
                 populateProducts();
                 populateCafets();
+                populateProviders();
             }
         });
     }
+
+
 }

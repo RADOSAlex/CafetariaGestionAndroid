@@ -10,17 +10,20 @@ public class Cafet {
     private long cid;
     private String name;
     private String telephone;
+    private int productNumber;
 
     public Cafet() {
         this.cid = 0;
     }
 
     @Ignore
-    public Cafet(String name, String telephone) {
+    public Cafet(String name, String telephone, int productNumber) {
         this();
         this.name = name;
         this.telephone = telephone;
+        this.productNumber=productNumber;
     }
+
 
     public long getCid() {
         return cid;
@@ -44,5 +47,13 @@ public class Cafet {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public int getProductNumber() {
+        return productNumber;
+    }
+
+    public void setProductNumber(int productNumber) {
+        this.productNumber = productNumber;
     }
 }
