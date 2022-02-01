@@ -5,8 +5,7 @@
     tools:context=".ui.product.CafetFragment">
 
     <data>
-        <variable name="cafet" type="fr.ensisa.rados.cafetariagestion.model.Cafet" />
-        <import type="fr.ensisa.rados.cafetariagestion.model.ProductType"/>
+        <variable name="vm" type="fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.CafetViewModel" />
         <import type="fr.ensisa.rados.cafetariagestion.ui.DataBindingAdapters"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +22,7 @@
             android:ems="10"
             android:hint="@string/name"
             android:inputType="text"
-            android:text="@={cafet.name}"
+            android:text="@={vm.cafet.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,13 +37,10 @@
             android:ems="10"
             android:hint="@string/telephone"
             android:inputType="number"
-            android:text="@={cafet.telephone}"
+            android:text="@={vm.cafet.telephone}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Name" />
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

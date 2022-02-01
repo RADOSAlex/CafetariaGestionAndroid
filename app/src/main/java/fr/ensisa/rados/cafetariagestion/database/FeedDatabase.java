@@ -17,18 +17,28 @@ public class FeedDatabase {
         dao.insert(new Product("7up", ProductType.DRINKS, 10.0, 0.8, new GregorianCalendar(2022, 01, 29).getTime()));
     }
 
-    private void feedCafe() {
+    private void feedCafets() {
         CafetDao dao = AppDatabase.getInstance().cafetDao();
         dao.insert(new Cafet("Werner", "15184"));
 
     }
 
-    public void feed() {
+    public void feedP() {
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 feedProducts();
+            }
+        });
+    }
+
+    public void feedC() {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                feedCafets();
             }
         });
     }

@@ -1,6 +1,20 @@
 package fr.ensisa.rados.cafetariagestion.ui.fragment;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -8,37 +22,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 import fr.ensisa.rados.cafetariagestion.R;
 import fr.ensisa.rados.cafetariagestion.database.AppDatabase;
 import fr.ensisa.rados.cafetariagestion.database.FeedDatabase;
-import fr.ensisa.rados.cafetariagestion.databinding.ProductItemBinding;
+import fr.ensisa.rados.cafetariagestion.databinding.CafetItemBinding;
+import fr.ensisa.rados.cafetariagestion.model.Cafet;
 import fr.ensisa.rados.cafetariagestion.model.Product;
-
-
 import fr.ensisa.rados.cafetariagestion.ui.ItemSwipeCallback;
-import fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.ProductListViewModel;
+import fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.CafetListViewModel;
 
-public class ProductListFragment extends Fragment {
+public class CafetListFragment extends Fragment {
 
-    private ProductListViewModel mViewModel;
-    private ProductListAdapter adapter;
+    private CafetListViewModel mViewModel;
+    private CafetListAdapter adapter;
 
-    public static ProductListFragment newInstance() {
-        return new ProductListFragment();
+    public static CafetListFragment newInstance() {
+        return new CafetListFragment();
     }
 
 
@@ -51,14 +52,14 @@ public class ProductListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.product_list_fragment, container, false);
+        View root = inflater.inflate(R.layout.cafet_list_fragment, container, false);
         root.findViewById(R.id.add).setOnClickListener((view) -> {
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_productListFragment_to_productFragment);
+                    .navigate(R.id.action_cafetListFragment_to_cafetFragment);
         });
         RecyclerView list = root.findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(root.getContext(), RecyclerView.VERTICAL, false));
-        adapter = new ProductListAdapter();
+        adapter = new CafetListFragment.CafetListAdapter();
         list.setAdapter(adapter);
         DividerItemDecoration divider = new DividerItemDecoration(list.getContext(), DividerItemDecoration.VERTICAL);
         list.addItemDecoration(divider);
@@ -66,16 +67,16 @@ public class ProductListFragment extends Fragment {
                 new ItemSwipeCallback(getContext(), ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, new ItemSwipeCallback.SwipeListener() {
                     @Override
                     public void onSwiped(int direction, int position) {
-                        Product product = adapter.products.get(position);
+                        Cafet cafet = adapter.cafets.get(position);
 
                         switch (direction) {
                             case ItemTouchHelper.LEFT:
-                                mViewModel.deleteProduct (product);
+                                mViewModel.deleteCafet(cafet);
                                 break;
                             case ItemTouchHelper.RIGHT:
-                                ProductListFragmentDirections.ActionProductListFragmentToProductFragment action = ProductListFragmentDirections.actionProductListFragmentToProductFragment();
-                                action.setId(product.getPid());
-                                NavHostFragment.findNavController(ProductListFragment.this).navigate(action);
+                                CafetListFragmentDirections.ActionCafetListFragmentToCafetFragment action = CafetListFragmentDirections.actionCafetListFragmentToCafetFragment();
+                                action.setId(cafet.getCid());
+                                NavHostFragment.findNavController(CafetListFragment.this).navigate(action);
                                 break;
                         }
                     }
@@ -88,19 +89,17 @@ public class ProductListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ProductListViewModel.class);
-        mViewModel.setProductDao(AppDatabase.getInstance().productDao());
-        mViewModel.getProducts().observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
+        mViewModel = new ViewModelProvider(this).get(CafetListViewModel.class);
+        mViewModel.setCafetDao(AppDatabase.getInstance().cafetDao());
+        mViewModel.getCafets().observe(getViewLifecycleOwner(), new Observer<List<Cafet>>() {
             @Override
-            public void onChanged(List<Product> products) {
-                adapter.setProducts(products);
-            }
+            public void onChanged(List<Cafet> cafets) { adapter.setCafets(cafets); }
         });
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.products_menu, menu);
+        inflater.inflate(R.menu.cafet_menu, menu);
     }
 
     @Override
@@ -114,31 +113,31 @@ public class ProductListFragment extends Fragment {
 
     private boolean doPopulate() {
         FeedDatabase feeder = new FeedDatabase();
-        feeder.feedP();
+        feeder.feedC();
         return true;
     }
 
-    private class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ProductHolder> {
 
-        private List<Product> products;
+    private class CafetListAdapter extends RecyclerView.Adapter<CafetListFragment.CafetListAdapter.CafetHolder> {
+        private List<Cafet> cafets;
 
 
-        private class ProductHolder extends RecyclerView.ViewHolder {
 
-            ProductItemBinding binding;
+        private class CafetHolder extends RecyclerView.ViewHolder {
+            CafetItemBinding binding;
 
-            public ProductHolder(ProductItemBinding binding) {
+            public CafetHolder(CafetItemBinding binding) {
                 super(binding.getRoot());
                 this.binding = binding;
                 this.binding.getRoot().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         int position = getLayoutPosition();
-                        Product product= products.get(position);
-                        ProductListFragmentDirections.ActionProductListFragmentToProductFragment PListToP_action = ProductListFragmentDirections.actionProductListFragmentToProductFragment();
+                        Cafet cafet = cafets.get(position);
+                        CafetListFragmentDirections.ActionCafetListFragmentToCafetFragment CListToC_action = CafetListFragmentDirections.actionCafetListFragmentToCafetFragment();
 
-                        PListToP_action.setId(product.getPid());
-                        NavHostFragment.findNavController(ProductListFragment.this).navigate(PListToP_action);
+                        CListToC_action.setId(cafet.getCid());
+                        NavHostFragment.findNavController(CafetListFragment.this).navigate(CListToC_action);
                     }
                 });
 
@@ -146,37 +145,34 @@ public class ProductListFragment extends Fragment {
                     @Override
                     public boolean onLongClick(View view) {
                         int position = getLayoutPosition();
-                        Product product = products.get(position);
-                        mViewModel.deleteProduct(product);
+                        Cafet cafet = cafets.get(position);
+                        mViewModel.deleteCafet(cafet);
                         return true;
                     }
                 });
-            }
-        }
 
+            }
+
+        }
         @NonNull
         @Override
-        public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            ProductItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.product_item, parent, false);
-            return new ProductHolder(binding);
+        public CafetHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            CafetItemBinding binding= DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.cafet_item, parent, false);
+            return new CafetHolder(binding);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
-            Product product = products.get(position);
-            holder.binding.setProduct(product);
+        public void onBindViewHolder(@NonNull CafetHolder holder, int position) {
+            Cafet cafet = cafets.get(position);
+            holder.binding.setCafet(cafet);
         }
-
 
         @Override
-        public int getItemCount() {
-            return products != null ? products.size() : 0;
-        }
+        public int getItemCount() { return cafets != null ? cafets.size() : 0; }
 
-        public void setProducts(List<Product> products) {
-            this.products = products;
+        public void setCafets(List<Cafet> cafets){
+            this.cafets=cafets;
             notifyDataSetChanged();
         }
-
     }
 }

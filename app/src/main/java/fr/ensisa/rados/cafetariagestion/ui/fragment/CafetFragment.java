@@ -28,8 +28,8 @@ import fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.CafetViewModel;
 import fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.ProductViewModel;
 
 public class CafetFragment extends Fragment {
-    static private final String TAG = "ProductFragment";
-    private static final int EXPIRATIONDATE = 1;
+    static private final String TAG = "CafetFragment";
+
 
     private CafetViewModel mViewModel;
     private CafetFragmentBinding binding;
@@ -46,14 +46,14 @@ public class CafetFragment extends Fragment {
         setHasOptionsMenu(true);
         if (getArguments() !=null)
         {
-            id = ProductFragmentArgs.fromBundle(getArguments()).getId();
+            id = CafetFragmentArgs.fromBundle(getArguments()).getId();
         } else { id=-1; }
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.product_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.cafet_fragment, container, false);
         binding.setLifecycleOwner(this);
         return binding.getRoot();
     }
@@ -63,8 +63,8 @@ public class CafetFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(CafetViewModel.class);
         mViewModel.setCafetDao(AppDatabase.getInstance().cafetDao());
-        long id = ProductFragmentArgs.fromBundle(getArguments()).getId();
-        if (id == 0) {
+        long id = CafetFragmentArgs.fromBundle(getArguments()).getId();
+        if (id == -1) {
             mViewModel.createCafet();
         }
         else{
@@ -75,7 +75,7 @@ public class CafetFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.product_menu_save,menu);
+        inflater.inflate(R.menu.cafet_menu_save,menu);
         inflater.inflate(R.menu.return_menu, menu);
     }
 

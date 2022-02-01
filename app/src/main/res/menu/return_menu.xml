@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="fr.ensisa.fournier.kfet.MainActivity">
+    tools:context="fr.ensisa.rados.cafetariagestion.MainActivity">
 
     <item
         android:id="@+id/back"

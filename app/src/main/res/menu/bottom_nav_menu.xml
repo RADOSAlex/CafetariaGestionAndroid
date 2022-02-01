@@ -12,7 +12,7 @@
         android:title="@string/productList" />
 
     <item
-        android:id="@+id/cafetFragment"
+        android:id="@+id/cafetListFragment"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/Cafet" />
 

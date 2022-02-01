@@ -28,11 +28,37 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
     <fragment
         android:id="@+id/cafetFragment"
         android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.CafetFragment"
         android:label="cafet_fragment"
-        tools:layout="@layout/cafet_fragment" />
+        tools:layout="@layout/cafet_fragment">
+    <argument
+        android:name="id"
+        app:argType="long"
+        android:defaultValue="-1L" />
+    </fragment>
+    <fragment
+        android:id="@+id/cafetListFragment"
+        android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.CafetListFragment"
+        android:label="cafet_list_fragment"
+        tools:layout="@layout/cafet_list_fragment" >
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_cafetListFragment_to_cafetFragment"
+            app:destination="@id/cafetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
 </navigation>

@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 
 import fr.ensisa.rados.cafetariagestion.database.CafetDao;
 import fr.ensisa.rados.cafetariagestion.model.Cafet;
+import fr.ensisa.rados.cafetariagestion.model.Product;
 
 public class CafetViewModel extends ViewModel {
     private LiveData<Cafet> cafet;
@@ -25,16 +26,28 @@ public class CafetViewModel extends ViewModel {
         this.id.postValue(id);
     }
 
-    public LiveData<Cafet> getCafet(){
+    public LiveData<Cafet> getCafet() {
         return cafet;
     }
 
-    public void saveCafet (Cafet c){
+    public void saveCafet(Cafet c) {
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(new Runnable() {
             @Override
             public void run() {
                 cafetDao.insert(c);
+            }
+        });
+    }
+
+    public void createCafet() {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Cafet cafet = new Cafet();
+                long id = cafetDao.insert(cafet);
+                setId(id);
             }
         });
     }

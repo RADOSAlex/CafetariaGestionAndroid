@@ -84,7 +84,7 @@ public class ProductFragment extends Fragment implements DatePickerFragment.OnCh
 //            }
 //        });
         long id = ProductFragmentArgs.fromBundle(getArguments()).getId();
-        if (id == 0) {
+        if (id == -1) {
             mViewModel.createProduct();
         }
         else{
