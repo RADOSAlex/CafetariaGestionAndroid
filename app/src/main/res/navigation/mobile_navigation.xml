@@ -64,11 +64,24 @@
         android:id="@+id/providerListFragment"
         android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.ProviderListFragment"
         android:label="provider_list_fragment"
-        tools:layout="@layout/provider_list_fragment" />
+        tools:layout="@layout/provider_list_fragment" >
+        <action
+            android:id="@+id/action_providerListFragment_to_providerFragment"
+            app:destination="@id/providerFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/providerFragment"
         android:name="fr.ensisa.rados.cafetariagestion.ui.fragment.ProviderFragment"
         android:label="provider_fragment"
-        tools:layout="@layout/provider_fragment" />
+        tools:layout="@layout/provider_fragment" >
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 
 </navigation>
