@@ -43,6 +43,17 @@ public class Converters {
     }
 
     @TypeConverter
+    public static String fromInt(int nb){
+        return nb == 0? null: String.valueOf(nb);
+    }
+
+    @TypeConverter
+    public static int toInt(String text){
+        return text ==null? null: Integer.parseInt(text);
+    }
+
+
+    @TypeConverter
     public static long date2Long (Date date) {
         if (date == null) return -1;
         return date.getTime();

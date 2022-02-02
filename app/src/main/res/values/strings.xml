@@ -24,4 +24,6 @@
     <string name="providerList">Provider</string>
     <string name="sellerName">sellerName</string>
     <string name="place">place</string>
+    <string name="orderTime">Order time (d)</string>
+    <string name="mail">mail</string>
 </resources>

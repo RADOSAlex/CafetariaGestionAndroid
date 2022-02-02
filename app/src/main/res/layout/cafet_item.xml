@@ -41,17 +41,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/CafetItemProducts"
+            android:id="@+id/sellerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
-            android:hint="@string/productsNumber"
-
+            android:hint="@string/sellerName"
+            android:text="@{cafet.sellerName}"
             android:textAlignment="textEnd"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/CafetItemPrice"
             app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!---android:text="@{cafet.productNumber}"-->
 </layout>

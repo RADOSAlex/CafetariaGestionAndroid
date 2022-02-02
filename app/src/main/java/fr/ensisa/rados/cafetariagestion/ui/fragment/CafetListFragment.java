@@ -114,7 +114,7 @@ public class CafetListFragment extends Fragment {
     private boolean doPopulate() {
         FeedDatabase feeder = new FeedDatabase();
         feeder.feed();
-        feeder.feedC();
+        //feeder.feedC();
         return true;
     }
 
