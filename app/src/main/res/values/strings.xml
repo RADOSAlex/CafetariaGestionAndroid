@@ -22,4 +22,6 @@
     <string name="productsNumber">Number of Product</string>
     <string name="cafetList">Cafet</string>
     <string name="providerList">Provider</string>
+    <string name="sellerName">sellerName</string>
+    <string name="place">place</string>
 </resources>
