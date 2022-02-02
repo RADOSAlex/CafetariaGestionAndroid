@@ -42,6 +42,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Name" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listCafetProductAss"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/telephone"
+            tools:layout_editor_absoluteX="1dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

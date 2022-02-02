@@ -12,12 +12,13 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import fr.ensisa.rados.cafetariagestion.model.Cafet;
+import fr.ensisa.rados.cafetariagestion.model.CafetProductAssociation;
 import fr.ensisa.rados.cafetariagestion.model.Product;
 import fr.ensisa.rados.cafetariagestion.model.ProductType;
 import fr.ensisa.rados.cafetariagestion.model.Provider;
 
 @TypeConverters({Converters.class})
-@Database(entities = {Product.class, Cafet.class, Provider.class}, version = 1, exportSchema = false)
+@Database(entities = {Product.class, Cafet.class, Provider.class, CafetProductAssociation.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     static private AppDatabase instance = null;
