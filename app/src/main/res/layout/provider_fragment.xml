@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.product.CafetFragment">
+    tools:context=".ui.product.ProviderFragment">
 
     <data>
         <variable name="vm" type="fr.ensisa.rados.cafetariagestion.ui.fragment.viewmodel.ProviderViewModel" />

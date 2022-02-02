@@ -4,17 +4,17 @@
     <item
         android:id="@+id/productListFragment"
         android:icon="@drawable/product_list"
-        android:title="@string/title_home" />
+        android:title="@string/productList" />
 
     <item
         android:id="@+id/cafetListFragment"
         android:icon="@drawable/cafet_list"
-        android:title="@string/productList" />
+        android:title="@string/cafetList" />
 
     <item
         android:id="@+id/providerListFragment"
         android:icon="@drawable/provider_list"
-        android:title="@string/Cafet" />
+        android:title="@string/providerList" />
 
 
 </menu>

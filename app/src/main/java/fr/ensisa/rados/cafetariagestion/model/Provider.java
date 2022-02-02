@@ -1,6 +1,7 @@
 package fr.ensisa.rados.cafetariagestion.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import fr.ensisa.rados.cafetariagestion.database.ProviderDao;
@@ -10,6 +11,8 @@ public class Provider {
     private long pid;
     private String name;
     private String phoneNumber;
+    private String place;
+    private String mail;
     private int orderTime;  //Si on commande un produit mtn combien de temps il va faloir
 
     public Provider()
@@ -17,11 +20,14 @@ public class Provider {
         this.pid=0;
     }
 
-    public Provider(String name, String phoneNumber, int orderTime) {
+    @Ignore
+    public Provider(String name, String phoneNumber, int orderTime, String place, String mail) {
         this();
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.orderTime = orderTime;
+        this.place=place;
+        this.mail=mail;
     }
 
     public long getPid() {
@@ -54,5 +60,21 @@ public class Provider {
 
     public void setOrderTime(int orderTime) {
         this.orderTime = orderTime;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 }

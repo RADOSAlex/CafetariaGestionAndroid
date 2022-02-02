@@ -38,14 +38,14 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
     public void populateCafets(){
-        cafetDao().insert(new Cafet("Werner", "034545846", 0));
+        cafetDao().insert(new Cafet("Werner", "0123456789", 0, "M.Hassenforder","Ensisa"));
     }
     public void populateProducts() {
         productDao().insert(new Product("Pizza", ProductType.FOOD, 10.0, 3.6, new Date("22/03/1999")));
     }
 
     private void populateProviders() {
-        providerDao().insert(new Provider("Boulangerie Germain", "06080484", 3));
+        providerDao().insert(new Provider("Boulangerie Germain", "06080484", 3, "Rue de la Bastille", "alexandre.rados@uha.fr"));
     }
     public void populate() {
         Executor executor = Executors.newSingleThreadExecutor();

@@ -121,8 +121,6 @@ public class CafetListFragment extends Fragment {
     private class CafetListAdapter extends RecyclerView.Adapter<CafetListFragment.CafetListAdapter.CafetHolder> {
         private List<Cafet> cafets;
 
-
-
         private class CafetHolder extends RecyclerView.ViewHolder {
             CafetItemBinding binding;
 

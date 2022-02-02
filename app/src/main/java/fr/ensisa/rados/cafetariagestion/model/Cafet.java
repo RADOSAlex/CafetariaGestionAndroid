@@ -10,6 +10,8 @@ public class Cafet {
     private long cid;
     private String name;
     private String telephone;
+    private String sellerName;
+    private String place;
     private int productNumber;
 
     public Cafet() {
@@ -17,11 +19,13 @@ public class Cafet {
     }
 
     @Ignore
-    public Cafet(String name, String telephone, int productNumber) {
+    public Cafet(String name, String telephone, int productNumber, String sellerName, String place) {
         this();
         this.name = name;
         this.telephone = telephone;
         this.productNumber=productNumber;
+        this.sellerName=sellerName;
+        this.place=place;
     }
 
 
@@ -55,5 +59,21 @@ public class Cafet {
 
     public void setProductNumber(int productNumber) {
         this.productNumber = productNumber;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 }

@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable name="provider" type="fr.ensisa.rados.cafetariagestion.model.Cafet"/>
+        <variable name="provider" type="fr.ensisa.rados.cafetariagestion.model.Provider"/>
         <import type="fr.ensisa.rados.cafetariagestion.ui.DataBindingAdapters"/>
     </data>
 
@@ -34,7 +34,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:hint="@string/telephone"
-            android:text="@{provider.telephone}"
+            android:text="@{provider.phoneNumber}"
             android:textAlignment="textEnd"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/ProviderItemName"
